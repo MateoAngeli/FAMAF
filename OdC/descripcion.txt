@@ -1,0 +1,18 @@
+Angeli Mateo
+DNI: 44898200
+
+Afonso Santiago
+DNI: 94748236
+
+Di Forte Reusa Federico
+DNI: 49687344
+
+
+
+Descripcion ejercicio1:
+Primero, aparece un paisaje con un pixelart de Link, el protagonista del famosisimo videojuego "Zelda".
+Al apretar la tecla w el paisaje es reemplazado por un dibujo con la "trifuerza" un objeto de este videojuego.
+
+Descripcion ejercicio2:
+Inicialmente, hay un paisaje con un sol, algunas flores, dos casas y un arbol. Al utilizar wasd se mueve
+la casa de la derecha. Apretando espacio, se cambia a otra figura. Asi podes crear tu propio paisaje ¡¡WOW!!
