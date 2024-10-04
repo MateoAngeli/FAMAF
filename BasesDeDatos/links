@@ -1,0 +1,15 @@
+https://github.com/EbnerLautaro/Ejercicios-SQL
+https://github.com/El-Yankee/FAMAF/tree/main/3%C2%B0%202C%20Base%20de%20Datos
+https://github.com/MateoAngeli/FAMAF
+
+El orden de ejecución de las cláusulas en una consulta SQL sigue un proceso específico, aunque cuando escribimos las consultas parece que el flujo sigue otro orden. Aquí está el orden lógico en el que se aplican las cláusulas WHERE, GROUP BY, y HAVING:
+
+FROM: Se selecciona la tabla o tablas de las que se extraerán los datos.
+
+WHERE: Filtra los registros antes de que se agrupen. Se aplica sobre las filas individuales de la tabla o tablas que seleccionaste en FROM.
+
+GROUP BY: Agrupa las filas filtradas por la cláusula WHERE según los valores de una o más columnas. En este punto, las filas se agrupan en conjuntos.
+
+HAVING: Filtra los grupos creados por GROUP BY. Es como un WHERE, pero aplicado después de agrupar, por lo que puedes usarlo para filtrar en función de agregaciones (por ejemplo, COUNT, SUM, AVG, etc.).
+
+SELECT: Finalmente, se seleccionan y devuelven las columnas que se van a mostrar. Las funciones de agregación también se calculan en este paso.
