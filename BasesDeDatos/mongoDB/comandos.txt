@@ -1,0 +1,6 @@
+sudo systemctl start mongod
+
+mongosh --host localhost
+
+ctrl + shift + p 
+run selected lines from playground
