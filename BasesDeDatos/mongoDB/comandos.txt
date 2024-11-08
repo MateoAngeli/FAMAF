@@ -4,3 +4,6 @@ mongosh --host localhost
 
 ctrl + shift + p 
 run selected lines from playground
+
+Chequear el formato:
+db.<collection>.find().limit(1)
