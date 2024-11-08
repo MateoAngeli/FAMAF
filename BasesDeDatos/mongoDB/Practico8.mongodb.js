@@ -238,4 +238,135 @@ db.createView("Top5CommentsGenres", "movies", [
 
 db.Top5CommentsGenres.find();
 
-//
+// Ejercicio 10
+
+use("mflix");
+
+db.movies.aggregate([
+  {
+    $match: {
+      directors: { $in: ["Jules Bass"] },
+    },
+  },
+  {
+    $unwind: "$cast",
+  },
+  {
+    $group: {
+      _id: "$cast",
+      movies: { $addToSet: { name: "$title", release: "$year" } },
+    },
+  },
+  {
+    $match: {
+      "movies.1": { $exists: true },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      movies: 1,
+      actor: "$_id",
+    },
+  },
+]);
+
+// Ejercicio 11
+
+// Ejercicio 12
+
+// a
+
+use("restaurantdb");
+
+db.restaurants.aggregate([
+  {
+    $unwind: "$grades",
+  },
+  {
+    $group: {
+      _id: { id: "$restaurant_id", name: "$name" },
+      max: { $max: "$grades.score" },
+      min: { $min: "$grades.score" },
+      sum: { $sum: "$grades.score" },
+    },
+  },
+]);
+
+// b
+
+use("restaurantdb");
+
+db.restaurants.aggregate({
+  $project: {
+    _id: 0,
+    restaurant_id: 1,
+    name: 1,
+    max: { $max: "$grades.score" },
+    min: { $min: "$grades.score" },
+    sum: { $sum: "$grades.score" },
+  },
+});
+
+// c
+
+use("restaurantdb");
+
+db.restaurants.aggregate({
+  $project: {
+    _id: 0,
+    restaurant_id: 1,
+    name: 1,
+    max: { $max: "$grades.score" },
+    min: { $min: "$grades.score" },
+    sum: {
+      $reduce: {
+        input: "$grades.score",
+        initialValue: 0,
+        in: { $add: ["$$value", "$$this"] },
+      },
+    },
+  },
+});
+
+// d
+
+use("restaurantdb");
+
+db.restaurants.find(
+  {
+    "grades.score": { $type: "int" },
+  },
+  {
+    _id: 0,
+    restaurant_id: 1,
+    name: 1,
+    max: { $max: "$grades.score" },
+    min: { $min: "$grades.score" },
+    sum: { $sum: "$grades.score" },
+  }
+);
+
+// 13
+
+use("restaurantdb");
+
+db.restaurants.updateMany({}, [
+  {
+    $set: {
+      average_score: { $avg: "$grades.score" },
+      grade: {
+        $switch: {
+          branches: [
+            { case: { $lte: ["$average_score", 13] }, then: "A" },
+            { case: { $lte: ["$average_score", 27] }, then: "B" },
+            { case: { $gte: ["$average_score", 27] }, then: "C" },
+          ],
+          default: "N/A",
+        },
+      },
+    },
+  },
+]);
+
+db.restaurants.find();
